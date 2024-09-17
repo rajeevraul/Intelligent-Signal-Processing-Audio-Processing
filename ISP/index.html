@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ISP MidTerm Part 1</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                text-align: center
+            }
+        </style>
+        
+<!--Libraries-->
+        <script src="lib/p5.js"></script>
+        <script src="lib/p5.sound.js"></script>
+        
+<!--Main file-->
+        <script src="sketch.js"></script> 
+<!--Helper Scripts-->
+        <script src="helper/lowpassfilter.js"></script>
+        <script src="helper/waveshaper.js"></script>
+        <script src="helper/reverb.js"></script>
+        <script src="helper/mastervolume.js"></script>
+            
+    </head>
+    <body>
+        <main>
+        </main>
+        <div id="mainbuttons">
+            <div>
+                <button id="pausebutton">Pause</button>
+                <button id="playbutton">Play</button>
+                <button id="stopbutton">Stop</button>
+                <button id="skiptostartbutton">Skip to Start</button>
+                <button id="skiptoendbutton">Skip to end</button>
+                <button id="loopbutton">Loop</button>
+                <button id="recordbutton">Record</button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+<!--Low Pass Filters-->
+                <br>
+                <section>
+                    <header>Pass Filters</header>
+                        <div>
+                            <label><input type="radio" name="filterType" id="LowPass" checked> Low-pass</label>
+                            <label><input type="radio" name="filterType" id="BandPass"> Band-pass</label>
+                            <label><input type="radio" name="filterType" id="HighPass"> High-pass</label>
+                        </div>
+                    <div>
+                        <label>Cutoff Frequency</label>
+                        <input type="range" class="form-range" min="100" max="10000" step="50" id="CutoffFreq">
+                    </div>
+                    <div>
+                        <label>Resonance</label>
+                        <input type="range" class="form-range" min="1" max="10" step="1" value="1" id="ResFreq">
+                    </div>
+                    <div>
+                        <label>Dry/Wet</label>
+                        <input type="range" class="form-range" min="0" max="1" step="0.1" value="0" id="DryWet">
+                    </div>
+                    <div>
+                        <label for="Output" class="form-label">Output Level</label>
+                        <input type="range" class="form-range" min="0" max="50" step="2" value="2" id="Output">
+                    </div>
+                </section>
+                <br>
+<!--Waveshaper Distortion-->
+                <section>
+                    <header>Waveshaper Distortion</header>
+                    <div>
+                        <label for="DistortionAmt" class="form-label">Distortion Amount</label>
+                        <input type="range" class="form-range" min="0" max="1" step="0.01" id="DistortionAmt">
+                    </div>
+                    <div>
+                        <label for="Oversample" class="form-label">Oversample</label>
+                        <input type="range" class="form-range" min="0" max="2" step="1" id="Oversample">
+                    </div>
+                    <div>
+                        <label for="wsdDryWet" class="form-label">Dry/Wet</label>
+                        <input type="range" class="form-range" min="0" max="1" step="0.01" value="0" id="wsdDryWet">
+                    </div>
+                    <div>
+                        <label for="wsdOutputLevel" class="form-label">Output Level</label>
+                        <input type="range" class="form-range" min="0" max="1" step="0.01" value="1" id="wsdOutputLevel">
+                    </div>
+                </section>
+                <br>
+<!--Reverb-->
+                <section>
+                    <header>Reverb</header>
+                    <div>
+                        <label for="Duration">Duration</label>
+                        <input type="range" class="form-range" min="0" max="10" step="0.1" value="3" id="Duration">
+                    </div>
+                    <div>
+                        <label for="DecayRate">Decay Rate</label>
+                        <input type="range" class="form-range" min="0" max="100" step="0.1" value="2" id="DecayRate">
+                    </div>
+                    <div>
+                        <button type="button" id="Reverse">Reverse</button> 
+                    </div>
+                    <div>
+                        <label for="revDryWet">Dry/Wet</label>
+                        <input type="range" class="form-range" min="0" max="1" step="0.01" value="0" id="revDryWet">
+                    </div>
+                    <div>
+                        <label for="revOutputLevel">Output Level</label>
+                        <input type="range" class="form-range" min="0" max="10" step="0.1" value="1" id="revOutputLevel">
+                    </div>
+                </section>
+                <br>
+<!--Master Volume-->
+                <section>
+                    <h1>Master Volume</h1>
+                    <input type="range" class="form-range" id="mstVolume" min="0" max="10" step="1" value="1">
+                </section>
+            </div>
+            <div class="row">
+                <div id="spectrum"></div>
+            </div>
+        </div>
+    </body>
+</html>
